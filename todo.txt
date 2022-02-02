@@ -1,0 +1,7 @@
+base href
+favicons (calc)
+meta tags
+theme color
+responsiveness
+add this folder to projects folder
+https://flaviocopes.com/how-to-remove-last-char-string-js/  (add a btn for removing the last char of the string)

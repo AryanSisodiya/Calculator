@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Math&family=Supermercado+One&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: -ms-grid;
+            display: grid;
+            place-content: center;
+            background: #ecf0f1 !important;
+        }
+
+        .box-shadow {
+            -webkit-box-shadow: 0 0 10rem #00000078;
+            box-shadow: 0 0 10rem #00000078;
+            border-radius: 0.2rem;
+        }
+
+        .container {
+            padding: 0.5rem;
+        }
+
+        .container .box {
+            height: 8rem;
+            max-height: 8rem;
+            min-height: 8rem;
+            width: 29.5vw;
+            max-width: 29.5vw;
+            min-width: 29.5vw;
+            font-size: 4.5rem;
+            font-family: "Noto Sans Math", sans-serif;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            padding: 0 0.5vw;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        .container .btn-div {
+            font-family: "Supermercado One", cursive;
+            display: -ms-grid;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            grid-gap: 1rem;
+            margin: 1.2rem 0;
+            font-size: 10rem;
+        }
+
+        .container .btn-div .btn {
+            display: -ms-grid;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            -webkit-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .container .btn-div .btn:hover {
+            background-color: #ecf0f1;
+        }
+
+        /*# sourceMappingURL=style.css.map */
+    </style>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="container box-shadow" title="Calculator">
+        <div class="box box-shadow" id="screen" title="Result Here!" aria-placeholder="result"></div>
+        <div class="btn-div">
+            <div class="btn box-shadow" id="CA" title="Clear All">CA</div>
+            <div class="btn box-shadow" id="C" title="Clear">C</div>
+            <div class="btn box-shadow" id="/100" title="%">%</div>
+            <div class="btn box-shadow" id="**" title="^">^</div>
+            <div class="btn box-shadow" id="7" title="7">7</div>
+            <div class="btn box-shadow" id="8" title="8">8</div>
+            <div class="btn box-shadow" id="9" title="9">9</div>
+            <div class="btn box-shadow" id="*" title="×">&#10006;</div>
+            <div class="btn box-shadow" id="4" title="4">4</div>
+            <div class="btn box-shadow" id="5" title="5">5</div>
+            <div class="btn box-shadow" id="6" title="6">6</div>
+            <div class="btn box-shadow" id="-" title="-"> - </div>
+            <div class="btn box-shadow" id="1" title="1">1</div>
+            <div class="btn box-shadow" id="2" title="2">2</div>
+            <div class="btn box-shadow" id="3" title="3">3</div>
+            <div class="btn box-shadow" id="+" title="+">+</div>
+            <div class="btn box-shadow" id="0" title="0">0</div>
+            <div class="btn box-shadow" id="." title=".">.</div>
+            <div class="btn box-shadow" id="/" title="÷">&divide;</div>
+            <div class="btn box-shadow" id="=" title="="> =</div>
+        </div>
+    </div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let buttons = Array.from(document.querySelectorAll(".btn"))
+
+        let text = "Click to Type"
+        let screenValue = text;
+        screen.innerText = screenValue;
+
+        buttons.forEach(item => {
+            item.addEventListener("click", e => {
+                e.preventDefault();
+
+                if (screen.innerText != "" && screen.innerText == text) {
+                    screenValue = ""
+                    screen.innerText = screenValue;
+                }
+
+                let buttonText = e.target.id;
+
+                if (buttonText == 'CA') {
+                    screenValue = text;
+                    screen.innerText = screenValue;
+                }
+                else if (buttonText == 'C') {
+                    screenValue = screenValue.slice(0, -1);
+                    screen.innerText = screenValue;
+                }
+                else if (buttonText == '=') {
+                    screen.innerText = eval(screenValue);
+                }
+                else {
+                    screenValue += buttonText;
+                    screen.innerText = screenValue;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
